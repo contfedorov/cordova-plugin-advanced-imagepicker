@@ -27,37 +27,37 @@
         <framework src="io.github.ParkSangGwon:tedimagepicker:$ANDROID_IMAGE_PICKER_VERSION"/>
     </platform>
 
-    <platform name="ios">
-        <config-file parent="/*" target="config.xml">
-            <feature name="AdvancedImagePicker">
-                <param name="ios-package" value="AdvancedImagePicker"/>
-            </feature>
-        </config-file>
+<!--    <platform name="ios">-->
+<!--        <config-file parent="/*" target="config.xml">-->
+<!--            <feature name="AdvancedImagePicker">-->
+<!--                <param name="ios-package" value="AdvancedImagePicker"/>-->
+<!--            </feature>-->
+<!--        </config-file>-->
 
-        <header-file src="src/ios/AdvancedImagePicker-Bridging-Header.h" />
-        <source-file src="src/ios/AdvancedImagePicker.swift"  />
+<!--        <header-file src="src/ios/AdvancedImagePicker-Bridging-Header.h" />-->
+<!--        <source-file src="src/ios/AdvancedImagePicker.swift"  />-->
 
-        <podspec>
-            <config>
-                <source url="https://cdn.cocoapods.org/"/>
-            </config>
-            <pods use-frameworks="true">
-                <pod name="YPImagePicker" spec="4.5.0"/>
-            </pods>
-        </podspec>
+<!--        <podspec>-->
+<!--            <config>-->
+<!--                <source url="https://cdn.cocoapods.org/"/>-->
+<!--            </config>-->
+<!--            <pods use-frameworks="true">-->
+<!--                <pod name="YPImagePicker" spec="4.5.0"/>-->
+<!--            </pods>-->
+<!--        </podspec>-->
 
-        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
-            <string>This app requires access to the camera to take pictures and videos.</string>
-        </config-file>
+<!--        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">-->
+<!--            <string>This app requires access to the camera to take pictures and videos.</string>-->
+<!--        </config-file>-->
 
-        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
-            <string>This app requires access to the photo library to select pictures and videos.</string>
-        </config-file>
+<!--        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">-->
+<!--            <string>This app requires access to the photo library to select pictures and videos.</string>-->
+<!--        </config-file>-->
 
-        <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
-            <string>This app requires access to the microphone to record videos.</string>
-        </config-file>
+<!--        <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">-->
+<!--            <string>This app requires access to the microphone to record videos.</string>-->
+<!--        </config-file>-->
 
-        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
-    </platform>
+<!--        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>-->
+<!--    </platform>-->
 </plugin>

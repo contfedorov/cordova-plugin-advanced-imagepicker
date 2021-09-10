@@ -5,8 +5,7 @@
   "cordova": {
     "id": "cordova-plugin-advanced-imagepicker",
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   },
   "repository": {
