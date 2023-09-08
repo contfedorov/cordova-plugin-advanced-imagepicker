@@ -31,6 +31,9 @@ import YPImagePicker
         let asBase64 = options?.value(forKey: "asBase64") as? Bool ?? false;
         let videoCompression = options?.value(forKey: "videoCompression") as? String ?? "AVAssetExportPresetHighestQuality";
         let asJpeg = options?.value(forKey: "asJpeg") as? Bool ?? false;
+        let recordingTimeLimit = options?.value(forKey: "recordingTimeLimit") as? Double ?? 60.0;
+        let libraryTimeLimit = options?.value(forKey: "libraryTimeLimit") as? Double ?? 60.0;
+        let minimumTimeLimit = options?.value(forKey: "minimumTimeLimit") as? Double ?? 3.0;
 
         if(max < 0 || min < 0) {
             self.returnError(error: ErrorCodes.WrongJsonObject, message: "Min and Max can not be less then zero.");
@@ -53,6 +56,9 @@ import YPImagePicker
         config.library.skipSelectionsGallery = true;
         config.library.preSelectItemOnMultipleSelection = false;
         config.video.compression = videoCompression;
+        config.video.recordingTimeLimit = recordingTimeLimit;
+        config.video.libraryTimeLimit = libraryTimeLimit;
+        config.video.minimumTimeLimit = minimumTimeLimit;
 
         if(startOnScreen == "IMAGE") {
             config.startOnScreen = .photo;
@@ -88,6 +94,12 @@ import YPImagePicker
         }
 
         let picker = YPImagePicker(configuration: config);
+
+        if #available(iOS 15.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            picker.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
 
         picker.didFinishPicking {items, cancelled in
             if(cancelled) {
@@ -144,7 +156,7 @@ import YPImagePicker
             imageData = image.pngData()! as NSData;
         }
         if(asBase64) {
-            return imageData.base64EncodedString(options: .lineLength64Characters);
+            return imageData.base64EncodedString();
         } else {
             let filePath = self.tempFilePath();
             do {
@@ -167,7 +179,7 @@ import YPImagePicker
     func encodeVideo(url: URL) -> String {
         do {
             let fileData = try Data.init(contentsOf: url)
-            return fileData.base64EncodedString(options: .lineLength64Characters);
+            return fileData.base64EncodedString();
         } catch {
             return "";
         }
@@ -177,7 +189,7 @@ import YPImagePicker
         if(callbackId != nil) {
             let result:CDVPluginResult = CDVPluginResult(
                 status: CDVCommandStatus_ERROR, messageAs: [
-                    "error": error.rawValue,
+                    "code": error.rawValue,
                     "message": message
             ]);
             self.commandDelegate.send(result, callbackId: callbackId)
@@ -206,11 +218,11 @@ import YPImagePicker
         let result:CDVPluginResult = CDVPluginResult(status: CDVCommandStatus_OK);
         self.commandDelegate.send(result, callbackId: command.callbackId);
     }
-}
 
-enum ErrorCodes:NSNumber {
-    case UnsupportedAction = 1
-    case WrongJsonObject = 2
-    case PickerCanceled = 3
-    case UnknownError = 10
+    enum ErrorCodes:NSNumber {
+        case UnsupportedAction = 1
+        case WrongJsonObject = 2
+        case PickerCanceled = 3
+        case UnknownError = 10
+    }
 }

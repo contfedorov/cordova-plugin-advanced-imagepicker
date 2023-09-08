@@ -1,11 +1,11 @@
 # Advanced ImagePicker Cordova Plugin
-![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Maintenance](https://img.shields.io/maintenance/yes/2022)
 [![npm version](https://badge.fury.io/js/cordova-plugin-advanced-imagepicker.svg)](https://badge.fury.io/js/cordova-plugin-advanced-imagepicker)
 
 This [Cordova](https://cordova.apache.org) Plugin is for a better (multiple) ImagePicker with more options.
 
-It currently uses [Yummypets/YPImagePicker](https://github.com/Yummypets/YPImagePicker) (Version `4.5.0`) on iOS and 
-[ParkSangGwon/TedImagePicker](https://github.com/ParkSangGwon/TedImagePicker) (Default-Version `1.2.2`) on Android. 
+It currently uses [Yummypets/YPImagePicker](https://github.com/Yummypets/YPImagePicker) (Version `5.2.1`) on iOS and 
+[ParkSangGwon/TedImagePicker](https://github.com/ParkSangGwon/TedImagePicker) (Default-Version `1.2.8`) on Android. 
 
 **This Plugin is in active development!**
 
@@ -66,7 +66,7 @@ I developed it, testing with **cordova-ios@6.1.0**.
 
 ## Android
 
-- ANDROID_IMAGE_PICKER_VERSION - Version of `gun0912.ted:tedimagepicker` / default to `1.1.4` 
+- ANDROID_IMAGE_PICKER_VERSION - Version of `gun0912.ted:tedimagepicker` / default to `1.2.8` 
 
 ## iOS
 
@@ -143,6 +143,9 @@ Open the ImagePicker
     - asBase64 (boolean) **default: false**
     - asJpeg (boolean) **default: false**
     - videoCompression (string) ([Available Options](https://github.com/Yummypets/YPImagePicker/blob/23158e138bd649b40762bf2e4aa4beb0d463a121/Source/Configuration/YPImagePickerConfiguration.swift#L226-L240)) **default: AVAssetExportPresetHighestQuality**
+    - recordingTimeLimit (number) **default: 60.0** **IOS only**
+    - libraryTimeLimit (number) **default: 60.0** **IOS only**
+    - minimumTimeLimit (number) **default: 3.0** **IOS only**
 
 ```js
 window.AdvancedImagePicker.present({
@@ -180,7 +183,6 @@ window.AdvancedImagePicker.cleanup(function() {
 ## Android
 
 - Currently, the Android Library is not able to select Images and Videos at the same Time. See reported Issue [here](https://github.com/ParkSangGwon/TedImagePicker/issues/40).
-- The `PickerCanceled` ErrorCode is currently not supported in Android
 
 # Changelog
 
